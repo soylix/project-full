@@ -9,6 +9,10 @@
         <span><i class="el-icon-lock"></i></span>
         <el-input placeholder="密码"></el-input>
       </el-form-item>
+      <el-form-item props="captcha">
+        <el-input placeholder="验证码"></el-input>
+        <img @click="updataCaptcha" :src="captchaUrl" alt="">
+      </el-form-item>
     </el-form>
   </div>
 </template>
@@ -23,7 +27,8 @@ export default {
     return {
       rules: [
 
-      ]
+      ],
+      captchaUrl: '/api/captcha?_t=' + new Date().getTime(),
     };
   },
   computed: {
@@ -39,7 +44,9 @@ export default {
 
   },
   methods: {
-
+    updataCaptcha() {
+      this.captchaUrl = 'api/captcha?_t=' + new Date().getTime();
+    }
   },
   components: {
 
